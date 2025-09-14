@@ -1,0 +1,33 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r modules/dependencies.txt
+
+      - name: Run tests
+        run: |
+          pytest testsuites
+
+      - name: Build Docker image
+        run: |
+          docker build -t autorepo-new .
+
