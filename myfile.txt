@@ -1,0 +1,4 @@
+Hello, Shahzaib!
+This is my first file inside a Docker Ubuntu container.
+I am testing Vim and file editing.
+
